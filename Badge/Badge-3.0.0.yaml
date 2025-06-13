@@ -153,11 +153,15 @@ paths:
         Fetch details of all available badges.
       parameters:
       - name: registrationId
-        description: Filter results by registration.
+        description: Filter results by one or more registration Ids.
         in: query
         schema:
-          type: string
-          format: uuid
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
       - name: lastUpdated
         description: Filter results by their Last Updated timestamp.
         in: query
@@ -173,7 +177,7 @@ paths:
                 $ref: '#/components/schemas/ListBadgeResponse'
         "401":
           description: "Unauthorised: Access token is missing or invalid"
-  /api/v3/badge/{barcode}:
+  /api/v3/badge/{badgeId}:
     get:
       tags:
       - v3
@@ -181,11 +185,12 @@ paths:
       description: |
         Fetch detailed data about an existing badge.
       parameters:
-      - name: barcode
+      - name: badgeId
         in: path
         required: true
         schema:
           type: string
+          format: uuid
       responses:
         "200":
           description: Badge details
@@ -440,6 +445,9 @@ components:
     BadgeDetails:
       type: object
       properties:
+        Id:
+          type: string
+          format: uuid
         Barcode:
           type: string
         RegistrationId:

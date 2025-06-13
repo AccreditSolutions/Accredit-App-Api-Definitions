@@ -18,23 +18,59 @@ paths:
         Fetch details of all available registrations.
       parameters:
       - name: eventId
-        description: Filter results by event.
+        description: Filter results by one or more events.
         in: query
         schema:
-          type: string
-          format: uuid
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
       - name: roleId
-        description: Filter results by role.
+        description: Filter results by one or more roles.
         in: query
         schema:
-          type: string
-          format: uuid
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
       - name: contactId
-        description: Filter results by contact.
+        description: Filter results by one or more contacts.
         in: query
         schema:
-          type: string
-          format: uuid
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
+      - name: badgeAccessId
+        description: Filter results by one or more badge access.
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
+      - name: statusCode
+        description: Filter results by one or more registration status codes.
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+          style: form
+          explode: false
+      - name: passCollected
+        description: Filter results by their pass collected status.
+        in: query
+        schema:
+          type: boolean
       - name: lastUpdated
         description: Filter results by their Last Updated timestamp.
         in: query
@@ -79,9 +115,9 @@ paths:
     get:
       tags:
       - v3
-      summary: List registration badge barcodes
+      summary: List registration badge Ids
       description: |
-        Fetch badge barcodes linked to an existing registration.
+        Fetch badge Ids linked to an existing registration.
       parameters:
       - name: registrationId
         in: path
@@ -91,7 +127,7 @@ paths:
           format: uuid
       responses:
         "200":
-          description: Registration badge barcodes
+          description: Registration badge Ids
           content:
             application/json:
               schema:
@@ -198,10 +234,11 @@ components:
     GetRegistrationBadgeResponse:
       type: object
       properties:
-        Barcodes:
+        BadgeIds:
           type: array
           items:
             type: string
+            format: uuid
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
     GetRegistrationBadgeAccessResponse:

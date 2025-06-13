@@ -18,23 +18,35 @@ paths:
         Fetch details of all available matrices.
       parameters:
       - name: functionalAreaId
-        description: Filter results by event account type.
+        description: Filter results by one or more event account types.
         in: query
         schema:
-          type: string
-          format: uuid
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
       - name: roleId
-        description: Filter results by registration subtype.
+        description: Filter results by one or more registration subtypes.
         in: query
         schema:
-          type: string
-          format: uuid
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
       - name: registrationTypeId
-        description: Filter results by registration type.
+        description: Filter results by one or more registration types.
         in: query
         schema:
-          type: string
-          format: uuid
+          type: array
+          items:
+            type: string
+            format: uuid
+          style: form
+          explode: false
       responses:
         "200":
           description: Matrix details
