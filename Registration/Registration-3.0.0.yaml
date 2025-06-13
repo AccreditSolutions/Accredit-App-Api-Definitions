@@ -35,8 +35,6 @@ paths:
           items:
             type: string
             format: uuid
-          style: form
-          explode: false
       - name: contactId
         description: Filter results by one or more contacts.
         in: query
@@ -45,8 +43,6 @@ paths:
           items:
             type: string
             format: uuid
-          style: form
-          explode: false
       - name: badgeAccessId
         description: Filter results by one or more badge access.
         in: query
@@ -55,8 +51,6 @@ paths:
           items:
             type: string
             format: uuid
-          style: form
-          explode: false
       - name: statusCode
         description: Filter results by one or more registration status codes.
         in: query
@@ -64,8 +58,6 @@ paths:
           type: array
           items:
             type: string
-          style: form
-          explode: false
       - name: passCollected
         description: Filter results by their pass collected status.
         in: query
